@@ -1,0 +1,55 @@
+class BankAccount:
+    def __init__(self, account_holder, initial_balance=0):
+        self.account_holder = account_holder
+        self.__balance = initial_balance  # private variable
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"₹{amount} deposited successfully.")
+        else:
+            print("Enter a valid amount to deposit.")
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            print(f"₹{amount} withdrawn successfully.")
+        else:
+            print("Insufficient balance or invalid amount.")
+
+    def check_balance(self):
+        print(f"Current balance: ₹{self.__balance}")
+
+    def get_account_holder(self):
+        return self.account_holder
+   
+def main():
+    print("🏦 Welcome to Python Bank")
+    name = input("Enter your name to open an account: ")
+    account = BankAccount(name)
+
+    while True:
+        print("\nSelect an option:")
+        print("1. Check Balance")
+        print("2. Deposit")
+        print("3. Withdraw")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == '1':
+            account.check_balance()
+        elif choice == '2':
+            amount = float(input("Enter amount to deposit: "))
+            account.deposit(amount)
+        elif choice == '3':
+            amount = float(input("Enter amount to withdraw: "))
+            account.withdraw(amount)
+        elif choice == '4':
+            print("Thank you for banking with us!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
